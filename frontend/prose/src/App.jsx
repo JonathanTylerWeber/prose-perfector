@@ -6,6 +6,7 @@ import ProseApi from "./api/api";
 import { jwtDecode } from "jwt-decode";
 import LoginForm from "./auth/Login";
 import SignupForm from "./auth/Signup";
+import PromptForm from "./prompts/PromptForm"
 import UseLocalStorage from "./hooks/UseLocalStorage";
 // import PrivateRoute from '../routes-nav/PrivateRoute';
 // import Profile from './Profile'
@@ -71,14 +72,14 @@ function App() {
               path="/"
               element={<Home currentUser={currentUser} />}
             />
-            {/* <Route
-              path="/companies"
+            <Route
+              path="/submitForm"
               element={
-                <PrivateRoute currentUser={currentUser}>
-                  <CompanyList />
-                </PrivateRoute>
-              } */}
-            {/* /> */}
+                // <PrivateRoute currentUser={currentUser}>
+                <PromptForm />
+                // </PrivateRoute>
+              }
+            />
             {/* <Route
               path="/companies/:handle"
               element={

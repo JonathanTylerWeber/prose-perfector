@@ -37,6 +37,18 @@ class ProseApi {
 
   // Individual API routes
 
+  static async makeRequestWithProxy(type, adj, prompt) {
+    try {
+      const response = await this.request("submit/form", { type, adj, prompt }, "post");
+      const content = response.choices[0].message.content;
+      console.log(`func res: ${response}`);
+      console.log(`content: ${content}`);
+      return content;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   static async getCurrentUser(username) {
     let res = await this.request(`users/${username}`, {}, "get");
     return res.user;
@@ -50,15 +62,6 @@ class ProseApi {
       throw error;
     }
   }
-
-  // static async applyForJob(username, jobId) {
-  //   try {
-  //     let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "post");
-  //     return res.applied; // Return the ID of the applied job
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
 
   static async signup(userData) {
     try {
