@@ -14,7 +14,7 @@ function NavbarComp({ currentUser, handleLogout }) {
         {currentUser ? (
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link className="nav-link mx-3" >New Prompt</Nav.Link>
+              <Nav.Link className="nav-link mx-3" exact='true' href="/submitForm">New Prompt</Nav.Link>
               <Nav.Link className="nav-link" >History</Nav.Link>
               <Nav.Link className="nav-link mx-3" href="#link">Profile</Nav.Link>
             </Nav>

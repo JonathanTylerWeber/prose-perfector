@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProseApi from "../api/api";
+import "./PromptForm.css"
 
 function Form() {
   const [type, setType] = useState('');

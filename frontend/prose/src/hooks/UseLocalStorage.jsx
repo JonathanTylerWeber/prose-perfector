@@ -21,6 +21,7 @@ function UseLocalStorage(key, initialValue) {
       console.error('Error saving to localStorage:', error);
     }
   };
+  console.log(`fetch user info: ${storedValue}`)
 
   return [storedValue, setValue];
 }

@@ -1,14 +1,14 @@
-import NavbarComp from "./routes-nav/Navbar"
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavbarComp from "./routes-nav/Navbar"
+import { jwtDecode } from "jwt-decode";
 import Home from "./homepage/Home";
 import ProseApi from "./api/api";
-import { jwtDecode } from "jwt-decode";
 import LoginForm from "./auth/Login";
 import SignupForm from "./auth/Signup";
 import PromptForm from "./prompts/PromptForm"
 import UseLocalStorage from "./hooks/UseLocalStorage";
-// import PrivateRoute from '../routes-nav/PrivateRoute';
+import PrivateRoute from './routes-nav/PrivateRoute';
 // import Profile from './Profile'
 import "./App.css"
 
@@ -24,6 +24,7 @@ function App() {
           ProseApi.token = token;
           let currentUser = await ProseApi.getCurrentUser(username);
           setCurrentUser(currentUser);
+          console.log(`use effect user: ${currentUser}`)
         } catch (error) {
           console.error("Failed to fetch user information:", error);
         }
@@ -60,6 +61,7 @@ function App() {
     setToken(null);
   };
 
+  console.log("currentUser in App:", currentUser);
 
   return (
     <div className="App">
@@ -75,9 +77,9 @@ function App() {
             <Route
               path="/submitForm"
               element={
-                // <PrivateRoute currentUser={currentUser}>
-                <PromptForm />
-                // </PrivateRoute>
+                <PrivateRoute currentUser={currentUser}>
+                  <PromptForm />
+                </PrivateRoute>
               }
             />
             {/* <Route
