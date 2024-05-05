@@ -77,9 +77,9 @@ function App() {
             <Route
               path="/submitForm"
               element={
-                <PrivateRoute currentUser={currentUser}>
-                  <PromptForm />
-                </PrivateRoute>
+                // <PrivateRoute currentUser={currentUser}>
+                <PromptForm />
+                // </PrivateRoute>
               }
             />
             {/* <Route

@@ -37,17 +37,51 @@ class ProseApi {
 
   // Individual API routes
 
+  // static async makeRequestWithProxy(type, adj, prompt) {
+  //   try {
+  //     const response = await this.request("submit/form", { type, adj, prompt }, "post");
+  //     const content = response.choices[0].message.content;
+  //     console.log(`func res: ${response}`);
+  //     console.log(`content: ${content}`);
+  //     return content;
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
+
   static async makeRequestWithProxy(type, adj, prompt) {
     try {
       const response = await this.request("submit/form", { type, adj, prompt }, "post");
+      // Extract the 'content' property from the first element of 'choices'
       const content = response.choices[0].message.content;
+
+      // Remove the leading "Object:" and split the content by line breaks
+      const objectLines = content.replace(/^Object:\s*/, '').split('\n');
+
+      // Initialize an empty object to store the parsed content
+      const parsedContent = {};
+
+      // Loop through each line in the content
+      objectLines.forEach(line => {
+        // Skip empty lines and lines that don't contain a colon
+        if (line.trim() && line.includes(':')) {
+          // Split the line by colon and trim whitespace
+          const [key, value] = line.split(':').map(part => part.trim());
+          // Add the key-value pair to the parsed content object
+          parsedContent[key] = value;
+        }
+      });
+
       console.log(`func res: ${response}`);
-      console.log(`content: ${content}`);
-      return content;
+      console.log(`parsed content:`, parsedContent);
+
+      // Return the parsed content object
+      return parsedContent;
     } catch (error) {
       throw error;
     }
   }
+
 
   static async getCurrentUser(username) {
     let res = await this.request(`users/${username}`, {}, "get");

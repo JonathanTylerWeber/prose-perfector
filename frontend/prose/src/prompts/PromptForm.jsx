@@ -28,7 +28,14 @@ function Form() {
         <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Prompt"></textarea>
         <button type="submit">Submit</button>
       </form>
-      {result && <pre>{result}</pre>}
+      {/* {result && <pre>{result}</pre>} */}
+      {result &&
+        <div>
+          <p>Original Rating: {result.original_rating}</p>
+          <p>Rewritten {type}: {result.rewrite}</p>
+          <p>Rewritten Rating: {result.new_rating}</p>
+        </div>
+      }
     </div>
   );
 }

@@ -19,7 +19,7 @@ async function makeRequestWithProxy(type, adj, prompt) {
       httpAgent: proxyAgent, // Use the proxy agent for HTTP requests (optional, but recommended)
     });
 
-    const basePrompt = `You will be provided with a ${type} and must rate it from 1-10 on grammar and how ${adj} it is. If it is not a 10 then you must rewrite it to make it a 10 with proper grammar and making it more ${adj}: ${prompt}`
+    const basePrompt = `You will be provided with a ${type} and must rate it from 1-10 on grammar and how ${adj} it is. If it is not a 10 then you must rewrite it to make it a 10 with proper grammar and making it more ${adj}. Please respond with an object where I can extract the values of original_rating, rewrite, new_rating: ${prompt}`
 
     // Request data
     const data = JSON.stringify({
