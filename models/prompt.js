@@ -13,20 +13,24 @@ class Prompt {
    * Returns { id, username, prompt, rating }
    **/
 
-  static async create(username, { prompt, rating, rewrite }) {
+  static async create(username, { prompt, rating, rewrite, type, adj }) {
     const result = await db.query(
       `INSERT INTO prompts
            (username,
             prompt,
             rating,
-            rewrite)
-           VALUES ($1, $2, $3, $4)
-           RETURNING id, username, prompt, rating, rewrite`,
+            rewrite,
+            type,
+            adj)
+           VALUES ($1, $2, $3, $4, $5, $6)
+           RETURNING id, username, prompt, rating, rewrite, type, adj`,
       [
         username,
         prompt,
         rating,
         rewrite,
+        type,
+        adj
       ],
     );
 

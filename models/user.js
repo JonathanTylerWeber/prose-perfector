@@ -17,7 +17,7 @@ class User {
   static async getPrompts(username) {
     // Query the database to retrieve prompts associated with the given username
     const promptsRes = await db.query(
-      `SELECT id, username, prompt, rating
+      `SELECT id, username, prompt, rating, type, adj, rewrite
        FROM prompts
        WHERE username = $1`,
       [username]

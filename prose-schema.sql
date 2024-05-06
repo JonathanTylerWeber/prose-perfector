@@ -11,5 +11,7 @@ CREATE TABLE prompts (
   prompt TEXT NOT NULL,
   rating TEXT NOT NULL, 
   rewrite TEXT NOT NULL, 
+  type TEXT NOT NULL, 
+  adj TEXT NOT NULL, 
   FOREIGN KEY (username) REFERENCES users(username)
 );

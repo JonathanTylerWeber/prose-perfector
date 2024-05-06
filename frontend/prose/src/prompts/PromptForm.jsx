@@ -19,7 +19,7 @@ function Form() {
       console.log('Rewrite response for form:', rewriteResponse);
       setRatingResult(ratingResponse);
       setRewriteResult(rewriteResponse);
-      await ProseApi.savePrompt(ratingResponse, prompt, rewriteResponse)
+      await ProseApi.savePrompt(ratingResponse, prompt, rewriteResponse, type, adj)
     } catch (error) {
       console.error("Failed to submit prompt form:", error);
     }

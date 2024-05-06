@@ -4,7 +4,7 @@ function UseLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+      return item ? item : initialValue;
     } catch (error) {
       console.error('Error loading from localStorage:', error);
       return initialValue;
@@ -16,7 +16,7 @@ function UseLocalStorage(key, initialValue) {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      window.localStorage.setItem(key, valueToStore);
     } catch (error) {
       console.error('Error saving to localStorage:', error);
     }

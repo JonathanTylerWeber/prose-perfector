@@ -13,7 +13,7 @@ const router = express.Router();
  * 
  * Create a new prompt associated with the authenticated user.
  * 
- * Returns { id, username, prompt, rating }
+ * Returns { id, username, prompt, rating, rewrite }
  * 
  * Authorization required: authenticated user
  */

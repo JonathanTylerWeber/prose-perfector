@@ -14,26 +14,36 @@ import PrivateRoute from './routes-nav/PrivateRoute';
 import "./App.css"
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = UseLocalStorage('token', null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      if (token) {
+      console.log(`****** token${token}`)
+      if (token && !currentUser) {
         try {
           let { username } = jwtDecode(token);
           ProseApi.token = token;
           let currentUser = await ProseApi.getCurrentUser(username);
           setCurrentUser(currentUser);
+          setLoading(false);
           console.log(`use effect user: ${currentUser}`)
         } catch (error) {
           console.error("Failed to fetch user information:", error);
+          setLoading(false);
         }
+      } else {
+        setLoading(false); // Set loading to false if there's no token or currentUser
       }
     };
 
     fetchUserInfo();
-  }, [token]);
+  }, [currentUser]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const handleLogin = async (username, password) => {
     try {
@@ -78,17 +88,17 @@ function App() {
             <Route
               path="/submitForm"
               element={
-                // <PrivateRoute currentUser={currentUser}>
-                <PromptForm />
-                // </PrivateRoute>
+                <PrivateRoute currentUser={currentUser}>
+                  <PromptForm />
+                </PrivateRoute>
               }
             />
             <Route
               path="/history"
               element={
-                // <PrivateRoute currentUser={currentUser}>
-                <History currentUser={currentUser} />
-                // </PrivateRoute>
+                <PrivateRoute currentUser={currentUser}>
+                  <History currentUser={currentUser} />
+                </PrivateRoute>
               }
             />
             < Route

@@ -39,7 +39,7 @@ class ProseApi {
 
   static async getUserPrompts(username) {
     try {
-      const res = await this.request(`${username}/prompts`);
+      const res = await this.request(`users/${username}/prompts`);
       return res;
     } catch (error) {
       console.error('Error getting user prompts:', error);
@@ -47,13 +47,13 @@ class ProseApi {
     }
   }
 
-  static async savePrompt(rating, prompt, rewrite) {
+  static async savePrompt(rating, prompt, rewrite, type, adj) {
     try {
-      const res = await this.request('prompt', { rating, prompt, rewrite }, 'post');
+      const res = await this.request('prompt', { rating, prompt, rewrite, type, adj }, 'post');
       console.log(res.data);
       return res.data;
     } catch (error) {
-      console.error('Error saving rating and rewrite data:', error);
+      console.error('Error saving data:', error);
       throw error;
     }
   }
