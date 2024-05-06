@@ -9,6 +9,7 @@ const { authenticateJWT } = require("./middleware/auth");
 const authRoutes = require("./routes/auth");
 const usersRoutes = require("./routes/users");
 const submitRoute = require("./routes/submitRequest");
+const promptRoutes = require('./routes/prompts');
 
 const morgan = require("morgan");
 
@@ -22,6 +23,7 @@ app.use(authenticateJWT);
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
 app.use("/submit", submitRoute);
+app.use('/prompt', promptRoutes)
 
 
 /** Handle 404 errors -- this matches everything */

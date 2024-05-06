@@ -14,6 +14,26 @@ const { BCRYPT_WORK_FACTOR } = require("../config.js");
 /** Related functions for users. */
 
 class User {
+  static async getPrompts(username) {
+    // Query the database to retrieve prompts associated with the given username
+    const promptsRes = await db.query(
+      `SELECT id, username, prompt, rating
+       FROM prompts
+       WHERE username = $1`,
+      [username]
+    );
+
+    // If no prompts are found, throw a NotFoundError
+    if (promptsRes.rows.length === 0) {
+      throw new NotFoundError(`No prompts found for user: ${username}`);
+    }
+
+    // Return the array of prompts
+    return promptsRes.rows;
+  }
+
+
+
   /** authenticate user with username, password.
    *
    * Returns { username, email }

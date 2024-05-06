@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
-import ProseApi from "../api/api";
+import ProseApi from '../API/api';
 import "./PromptForm.css"
 
 function Form() {
   const [type, setType] = useState('');
   const [adj, setAdj] = useState('');
   const [prompt, setPrompt] = useState('');
-  const [result, setResult] = useState('');
+  const [ratingResult, setRatingResult] = useState('');
+  const [rewriteResult, setRewriteResult] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log('Submitting prompt form...');
-      const response = await ProseApi.makeRequestWithProxy(type, adj, prompt);
-      console.log('Response for form:', response);
-      setResult(response);
+      const ratingResponse = await ProseApi.getRating(type, adj, prompt);
+      const rewriteResponse = await ProseApi.rewritePrompt(type, adj, prompt);
+      console.log('Rating response for form:', ratingResponse);
+      console.log('Rewrite response for form:', rewriteResponse);
+      setRatingResult(ratingResponse);
+      setRewriteResult(rewriteResponse);
+      await ProseApi.savePrompt(ratingResponse, prompt, rewriteResponse)
     } catch (error) {
       console.error("Failed to submit prompt form:", error);
     }
@@ -28,12 +33,10 @@ function Form() {
         <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Prompt"></textarea>
         <button type="submit">Submit</button>
       </form>
-      {/* {result && <pre>{result}</pre>} */}
-      {result &&
+      {ratingResult &&
         <div>
-          <p>Original Rating: {result.original_rating}</p>
-          <p>Rewritten {type}: {result.rewrite}</p>
-          <p>Rewritten Rating: {result.new_rating}</p>
+          <p>Rating: {ratingResult}</p>
+          <p>Rewritten {type}: {rewriteResult}</p>
         </div>
       }
     </div>
