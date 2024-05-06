@@ -7,6 +7,7 @@ import ProseApi from "./API/api";
 import LoginForm from "./auth/Login";
 import SignupForm from "./auth/Signup";
 import PromptForm from "./prompts/PromptForm"
+import History from "./prompts/History"
 import UseLocalStorage from "./hooks/UseLocalStorage";
 import PrivateRoute from './routes-nav/PrivateRoute';
 // import Profile from './Profile'
@@ -82,32 +83,14 @@ function App() {
                 // </PrivateRoute>
               }
             />
-            {/* <Route
-              path="/companies/:handle"
+            <Route
+              path="/history"
               element={
-                <PrivateRoute currentUser={currentUser}>
-                  <CompanyDetails currentUser={currentUser}
-                    setCurrentUser={setCurrentUser} />
-                </PrivateRoute>
+                // <PrivateRoute currentUser={currentUser}>
+                <History currentUser={currentUser} />
+                // </PrivateRoute>
               }
             />
-            <Route
-              path="/jobs"
-              element={
-                <PrivateRoute currentUser={currentUser}>
-                  <JobList currentUser={currentUser}
-                    setCurrentUser={setCurrentUser} />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/profile/:username"
-              element={
-                <PrivateRoute currentUser={currentUser}>
-                  <Profile />
-                </PrivateRoute>
-              }
-            /> */}
             < Route
               exact
               path="/login"

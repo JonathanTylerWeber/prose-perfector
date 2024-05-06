@@ -14,6 +14,23 @@ const router = express.Router();
 
 
 
+/** GET /[username]/prompts => { prompts }
+ *
+ * Returns list of user prompts
+ * 
+ * Authorization required: same user-as-:username
+ **/
+
+router.get("/:username/prompts", ensureCorrectUser, async function (req, res, next) {
+  try {
+    const prompts = await User.getPrompts(req.params.username);
+    return res.json({ prompts });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+
 /** GET / => { users: [ {username, firstName, lastName, email }, ... ] }
  *
  * Returns list of all users.
@@ -32,8 +49,8 @@ router.get("/", async function (req, res, next) {
 
 /** GET /[username] => { user }
  *
- * Returns { username, email, prompts }
- *   where prompts is { id, prompt, type, adjectives, response, rating }
+ * Returns { username, email }
+ * 
  *
  * Authorization required: same user-as-:username
  **/

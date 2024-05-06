@@ -15,8 +15,8 @@ function NavbarComp({ currentUser, handleLogout }) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link className="nav-link mx-3" exact='true' href="/submitForm">New Prompt</Nav.Link>
-              <Nav.Link className="nav-link" >History</Nav.Link>
-              <Nav.Link className="nav-link mx-3" href="#link">Profile</Nav.Link>
+              <Nav.Link className="nav-link" href="/history" >History</Nav.Link>
+              <Nav.Link className="nav-link mx-3" >Profile</Nav.Link>
             </Nav>
             <Nav className="ms-auto ">
               <Nav.Link exact='true' href="/" onClick={handleLogout}>

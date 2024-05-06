@@ -37,11 +37,21 @@ class ProseApi {
 
   // Individual API routes
 
+  static async getUserPrompts(username) {
+    try {
+      const res = await this.request(`${username}/prompts`);
+      return res;
+    } catch (error) {
+      console.error('Error getting user prompts:', error);
+      throw error;
+    }
+  }
+
   static async savePrompt(rating, prompt, rewrite) {
     try {
-      const response = await this.request('prompt', { rating, prompt, rewrite }, 'post');
-      console.log(response.data);
-      return response.data;
+      const res = await this.request('prompt', { rating, prompt, rewrite }, 'post');
+      console.log(res.data);
+      return res.data;
     } catch (error) {
       console.error('Error saving rating and rewrite data:', error);
       throw error;
@@ -52,6 +62,7 @@ class ProseApi {
     try {
       return await this.request(`prompt/${promptId}`, 'delete');
     } catch (error) {
+      console.error('Error deleting prompt:', error);
       throw error;
     }
   }
@@ -61,6 +72,7 @@ class ProseApi {
       let res = await this.request('submit/rating', { type, adj, prompt }, 'post');
       return res.choices[0].message.content;
     } catch (error) {
+      console.error('Error getting rating:', error);
       throw error;
     }
   }
@@ -70,6 +82,7 @@ class ProseApi {
       let res = await this.request('submit/rewrite', { type, adj, prompt }, 'post');
       return res.choices[0].message.content;
     } catch (error) {
+      console.error('Error getting rewrite:', error);
       throw error;
     }
   }

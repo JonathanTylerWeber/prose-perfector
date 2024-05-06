@@ -9,7 +9,7 @@ function Home({ currentUser }) {
       </h1>
       {currentUser ? (
         <>
-          <p>All the jobs in one, convenient place.</p>
+          <p>Perfect your prose</p>
           <p>Welcome back, {currentUser.username}!</p>
         </>
       ) : (
