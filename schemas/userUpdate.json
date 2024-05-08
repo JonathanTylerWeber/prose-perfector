@@ -8,7 +8,7 @@
       "minLength": 5,
       "maxLength": 20
     },
-    "username": {
+    "email": {
       "type": "string",
       "minLength": 1,
       "maxLength": 30

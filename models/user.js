@@ -125,8 +125,8 @@ class User {
 
   /** Given a username, return data about user.
    *
-   * Returns { username, email, prompts }
-   *   where prompts is { id, prompt, type, adjectives, response, rating }
+   * Returns { username, email }
+   * 
    *
    * Throws NotFoundError if user not found.
    **/
@@ -144,12 +144,6 @@ class User {
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
-    // const userApplicationsRes = await db.query(
-    //   `SELECT a.job_id
-    //        FROM applications AS a
-    //        WHERE a.username = $1`, [username]);
-
-    // user.applications = userApplicationsRes.rows.map(a => a.job_id);
     return user;
   }
 
@@ -159,34 +153,55 @@ class User {
    * all the fields; this only changes provided ones.
    *
    * Data can include:
-   *   { firstName, lastName, password, email, isAdmin }
+   *   { password, email }
    *
-   * Returns { username, firstName, lastName, email, isAdmin }
+   * Returns { username, email }
    *
    * Throws NotFoundError if not found.
    *
-   * WARNING: this function can set a new password or make a user an admin.
-   * Callers of this function must be certain they have validated inputs to this
-   * or a serious security risks are opened.
    */
 
   static async update(username, data) {
+    let newPassword;
+
     if (data.password) {
-      data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
+      newPassword = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
     }
 
-    const result = await db.query(`UPDATE users 
-      WHERE username = $1 
-      RETURNING username,
-                email`, [username],
-    );
-    const user = result.rows[0];
+    const values = [username];
 
-    if (!user) throw new NotFoundError(`No user: ${username}`);
+    let updateFields = '';
+    if (data.email) {
+      updateFields += 'email = $2';
+      values.push(data.email);
+    }
 
-    delete user.password;
-    return user;
+    if (newPassword) {
+      if (updateFields) updateFields += ', ';
+      updateFields += 'password = $3';
+      values.push(newPassword);
+    }
+
+    const query = `UPDATE users 
+                   SET ${updateFields} 
+                   WHERE username = $1 
+                   RETURNING username, email`;
+
+    try {
+      const result = await db.query(query, values);
+      const user = result.rows[0];
+
+      if (!user) {
+        throw new NotFoundError(`No user found with username: ${username}`);
+      }
+
+      delete user.password;
+      return user;
+    } catch (error) {
+      throw new Error(`Failed to update user: ${error.message}`);
+    }
   }
+
 
   /** Delete given user from database; returns undefined. */
 

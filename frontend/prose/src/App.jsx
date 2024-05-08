@@ -10,7 +10,7 @@ import PromptForm from "./prompts/PromptForm"
 import History from "./prompts/History"
 import UseLocalStorage from "./hooks/UseLocalStorage";
 import PrivateRoute from './routes-nav/PrivateRoute';
-// import Profile from './Profile'
+import ProfileForm from './profiles/ProfileForm'
 import "./App.css"
 
 function App() {
@@ -85,6 +85,15 @@ function App() {
               path="/"
               element={<Home currentUser={currentUser} />}
             />
+            < Route
+              exact
+              path="/login"
+              element={<LoginForm handleLogin={handleLogin} />} />
+            <Route
+              exact
+              path="/signup"
+              element={<SignupForm handleSignup={handleSignup} />}
+            />
             <Route
               path="/submitForm"
               element={
@@ -101,14 +110,13 @@ function App() {
                 </PrivateRoute>
               }
             />
-            < Route
-              exact
-              path="/login"
-              element={<LoginForm handleLogin={handleLogin} />} />
             <Route
-              exact
-              path="/signup"
-              element={<SignupForm handleSignup={handleSignup} />}
+              path="/profile/:username"
+              element={
+                <PrivateRoute currentUser={currentUser}>
+                  <ProfileForm currentUser={currentUser} />
+                </PrivateRoute>
+              }
             />
           </Routes>
         </main>
