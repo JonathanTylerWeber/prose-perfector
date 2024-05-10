@@ -50,9 +50,9 @@ function App() {
       let token = await ProseApi.login(username, password);
       setToken(token);
       return { success: true };
-    } catch (errors) {
-      console.error("Login failed:", errors);
-      return { success: false, errors };
+    } catch (error) {
+      console.error("Login failed:", error);
+      return { success: false, error: error };
     }
   };
 
@@ -61,11 +61,12 @@ function App() {
       const token = await ProseApi.signup(userData);
       setToken(token);
       return { success: true };
-    } catch (errors) {
-      console.error("Signup failed:", errors);
-      return { success: false, errors };
+    } catch (error) {
+      console.error("Signup failed:", error);
+      return { success: false, error: error };
     }
   };
+
 
   const handleLogout = () => {
     setCurrentUser(null);

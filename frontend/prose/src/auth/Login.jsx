@@ -9,11 +9,18 @@ function LoginForm({ handleLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleLogin(username, password);
-    setLoggedIn(true);
+    const result = await handleLogin(username, password);
+    if (result && result.success) {
+      setLoggedIn(true);
+    } else {
+      console.error("Login failed:", result ? result.error : "Unknown error");
+      setError(result ? result.error : "Unknown error");
+      return { success: false };
+    }
   };
 
   if (loggedIn) {
@@ -24,6 +31,7 @@ function LoginForm({ handleLogin }) {
     <Container className="m-auto cntr">
       <Form onSubmit={handleSubmit}>
         <h1>Login</h1>
+        {error && <div className="alert alert-danger">{error}</div>}
         <Form.Group className="mb-3" controlId="username">
           <Form.Label>Username:</Form.Label>
           <Form.Control type="text" value={username}
