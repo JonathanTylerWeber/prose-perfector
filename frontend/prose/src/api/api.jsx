@@ -29,7 +29,7 @@ class ProseApi {
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
-      console.error("API Error:", err.response);
+      console.error("API Error:", err);
       let message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
     }
@@ -58,9 +58,9 @@ class ProseApi {
     }
   }
 
-  static async deletePrompt(promptId) {
+  static async deletePrompt(promptId, username) {
     try {
-      return await this.request(`prompt/${promptId}`, 'delete');
+      return await this.request(`prompt/${username}/${promptId}`, {}, 'delete');
     } catch (error) {
       console.error('Error deleting prompt:', error);
       throw error;

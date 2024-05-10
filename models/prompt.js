@@ -51,6 +51,7 @@ class Prompt {
     );
 
     if (!result.rows[0]) throw new NotFoundError(`No prompt with id: ${id}`);
+    return { message: "Prompt deleted successfully" };
   }
 
 

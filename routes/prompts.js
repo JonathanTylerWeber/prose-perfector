@@ -37,9 +37,9 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
  * 
  * Delete a prompt with the given id.
  * 
- * Authorization required: authenticated user
+ * Authorization required: same user
  */
-router.delete("/:id", ensureCorrectUser, async function (req, res, next) {
+router.delete("/:username/:id", ensureCorrectUser, async function (req, res, next) {
   try {
     await Prompt.delete(req.params.id);
     return res.json({ deleted: req.params.id });

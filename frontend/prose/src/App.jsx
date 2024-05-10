@@ -39,7 +39,7 @@ function App() {
     };
 
     fetchUserInfo();
-  }, [currentUser]);
+  }, [token, currentUser]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -70,6 +70,7 @@ function App() {
   const handleLogout = () => {
     setCurrentUser(null);
     setToken(null);
+    localStorage.removeItem('token');
   };
 
   console.log("currentUser in App:", currentUser);
