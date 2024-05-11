@@ -109,17 +109,6 @@ async function rewritePrompt(type, adj, prompt) {
   }
 }
 
-// Dear grandma,thank you so much for the money you gave me for my birthday. It will help me to buy the new video game that I want.Sincerely, Dave
-
-// Call the function and handle the response
-// makeRequestWithProxy('thank you letter', 'sincere', "Dear grandma,thank you so much for the money you gave me for my birthday. It will help me to buy the new video game that I want.Sincerely,Dave")
-//   .then(data => {
-//     console.log(JSON.stringify(data));
-//   })
-//   .catch(error => {
-//     console.log(error);
-//   });
-
 module.exports = {
   getRating,
   rewritePrompt
