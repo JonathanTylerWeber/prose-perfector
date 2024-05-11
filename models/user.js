@@ -2,7 +2,6 @@
 
 const db = require("../db");
 const bcrypt = require("bcrypt");
-// const { sqlForPartialUpdate } = require("../helpers/sql");
 const {
   NotFoundError,
   BadRequestError,
@@ -192,30 +191,44 @@ class User {
       const user = result.rows[0];
 
       if (!user) {
+        console.log('not found*******')
         throw new NotFoundError(`No user found with username: ${username}`);
       }
 
       delete user.password;
       return user;
     } catch (error) {
-      throw new Error(`Failed to update user: ${error.message}`);
+      console.log(`other error ********${error}`)
+      if (error.message.includes("syntax error")) {
+        // If the error message indicates a syntax error, throw a BadRequestError
+        throw new BadRequestError("Bad request: Invalid data provided");
+      } else {
+        // Otherwise, re-throw the original error
+        throw error;
+      }
     }
   }
-
 
   /** Delete given user from database; returns undefined. */
 
   static async remove(username) {
-    let result = await db.query(
-      `DELETE
-           FROM users
-           WHERE username = $1
-           RETURNING username`,
-      [username],
+    // Delete related records in the prompts table first
+    await db.query(
+      `DELETE FROM prompts
+       WHERE username = $1`,
+      [username]
     );
-    const user = result.rows[0];
 
-    if (!user) throw new NotFoundError(`No user: ${username}`);
+    // Then delete the user
+    let result = await db.query(
+      `DELETE FROM users
+       WHERE username = $1`,
+      [username]
+    );
+
+    if (result.rowCount === 0) {
+      throw new NotFoundError(`No user: ${username}`);
+    }
   }
 
 
