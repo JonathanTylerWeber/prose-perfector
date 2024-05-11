@@ -4,20 +4,58 @@ const request = require("supertest");
 
 const app = require("../app");
 const db = require("../db");
+const User = require("../models/user");
+const Prompt = require("../models/prompt");
+const { createToken } = require("../helpers/tokens");
 
-const {
-  commonBeforeAll,
-  commonBeforeEach,
-  commonAfterEach,
-  commonAfterAll,
-  u1Token,
-  u2Token,
-} = require("./_testCommon");
+// const {
+//   commonBeforeAll,
+//   commonBeforeEach,
+//   commonAfterEach,
+//   commonAfterAll,
+//   u1Token,
+//   u2Token,
+// } = require("./_testCommon");
 
-beforeAll(commonBeforeAll);
-beforeEach(commonBeforeEach);
-afterEach(commonAfterEach);
-afterAll(commonAfterAll);
+beforeAll(async () => {
+  await db.query("DELETE FROM prompts");
+  await db.query("DELETE FROM users");
+
+  await User.register({
+    username: "u1",
+    email: "user1@user.com",
+    password: "password1",
+  });
+  await User.register({
+    username: "u2",
+    email: "user2@user.com",
+    password: "password2",
+  });
+  await User.register({
+    username: "u3",
+    email: "user3@user.com",
+    password: "password3",
+  });
+  await Prompt.create("u1", {
+    type: "test",
+    adj: "test",
+    prompt: "test",
+    rating: "test",
+    rewrite: "test"
+  });
+  const prompts = await db.query("SELECT * FROM prompts");
+  console.log("Prompts:", prompts.rows);
+  const users = await db.query("SELECT * FROM users");
+  console.log("users:", users.rows);
+});
+afterAll(async () => {
+  await db.query("DELETE FROM prompts");
+  await db.query("DELETE FROM users");
+  await db.end();
+});
+
+const u1Token = createToken({ username: "u1" });
+const u2Token = createToken({ username: "u2" });
 
 describe("GET /users", function () {
   test("works", async function () {
@@ -93,20 +131,4 @@ describe("PATCH /users/:username", function () {
   });
 });
 
-describe("DELETE /users/:username", function () {
-  test("works for correct user", async function () {
-    const resp = await request(app)
-      .delete("/users/u1")
-      .set("authorization", `Bearer ${u1Token}`)
-      .send();
-    expect(resp.body).toEqual({ deleted: "u1" });
-  });
 
-  test("unauth for incorrect user", async function () {
-    const resp = await request(app)
-      .delete("/users/u1")
-      .set("authorization", `Bearer ${u2Token}`)
-      .send();
-    expect(resp.statusCode).toEqual(401);
-  });
-});

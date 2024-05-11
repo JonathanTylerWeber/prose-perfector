@@ -6,8 +6,9 @@ const Prompt = require("../models/prompt");
 const { createToken } = require("../helpers/tokens");
 
 async function commonBeforeAll() {
-  await db.query("DELETE FROM users");
+  await db.query("BEGIN");
   await db.query("DELETE FROM prompts");
+  await db.query("DELETE FROM users");
 
   await User.register({
     username: "u1",
@@ -24,7 +25,17 @@ async function commonBeforeAll() {
     email: "user3@user.com",
     password: "password3",
   });
-
+  await Prompt.create("u1", {
+    type: "test",
+    adj: "test",
+    prompt: "test",
+    rating: "test",
+    rewrite: "test"
+  });
+  const prompts = await db.query("SELECT * FROM prompts");
+  console.log("Prompts:", prompts.rows);
+  const users = await db.query("SELECT * FROM users");
+  console.log("users:", users.rows);
 }
 
 async function commonBeforeEach() {
@@ -36,8 +47,8 @@ async function commonAfterEach() {
 }
 
 async function commonAfterAll() {
-  await db.query("DELETE FROM users");
   await db.query("DELETE FROM prompts");
+  await db.query("DELETE FROM users");
   await db.end();
 }
 
