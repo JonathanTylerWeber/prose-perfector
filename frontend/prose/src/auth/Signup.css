@@ -1,4 +1,10 @@
-h1,
+.signup-h1 {
+  margin-top: 3em;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+
 label {
   color: white;
   margin-top: 1em;
@@ -6,6 +12,9 @@ label {
 
 .btn {
   color: white;
+}
+
+.auth-btn {
   margin-top: 1em;
 }
 

@@ -20,7 +20,7 @@ function NavbarComp({ currentUser, handleLogout }) {
               <Nav.Link className="nav-link" href="/history" >History</Nav.Link>
               <Nav.Link className="nav-link mx-3" href={`/profile/${currentUser.username}`} >Profile</Nav.Link>
             </Nav>
-            <Nav className=" ">
+            <Nav className=" ms-auto">
               <Nav.Link exact='true' href="/" onClick={handleLogout}>
                 <button className="btn btn-success ">Log out</button>
               </Nav.Link>

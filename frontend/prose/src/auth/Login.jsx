@@ -44,7 +44,7 @@ function LoginForm({ handleLogin }) {
             required placeholder="Enter password" />
         </Form.Group>
 
-        <Button className="btn" variant="primary" type="submit">
+        <Button className="btn auth-btn" variant="primary" type="submit">
           Submit
         </Button>
       </Form>

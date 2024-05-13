@@ -30,7 +30,7 @@ function SignupForm({ handleSignup }) {
   return (
     <Container className="m-auto cntr">
       <Form onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
+        <h1 className="signup-h1">Sign Up</h1>
         {error && <div className="alert alert-danger">{error}</div>}
         <Form.Group className="mb-3" controlId="username">
           <Form.Label>Username:</Form.Label>
@@ -53,7 +53,7 @@ function SignupForm({ handleSignup }) {
             required placeholder="Enter password" />
         </Form.Group>
 
-        <Button className="btn" variant="primary" type="submit">
+        <Button className="btn auth-btn" variant="primary" type="submit">
           Submit
         </Button>
 

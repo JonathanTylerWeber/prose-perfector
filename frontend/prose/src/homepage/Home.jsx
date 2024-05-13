@@ -58,13 +58,14 @@ function Home({ currentUser }) {
               <div className="create-prompt">
                 <p className="head-p3">
                   Create a new prompt:
-                  <Nav.Link className="nav-link " exact='true' href="/submitForm">
-                    <div className="pen-container">
-                      <FontAwesomeIcon className="pen" icon={faPenToSquare} />
-                    </div>
-                  </Nav.Link>
                 </p>
+                <Nav.Link className="nav-link " exact='true' href="/submitForm">
+                  <div className="pen-container">
+                    <FontAwesomeIcon className="pen" icon={faPenToSquare} />
+                  </div>
+                </Nav.Link>
               </div>
+
             </div>
           </Container>
         </>
