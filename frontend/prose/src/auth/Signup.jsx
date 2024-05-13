@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
+import { Container, Form, Button, Nav } from "react-bootstrap"
 import "./Signup.css"
 
 function SignupForm({ handleSignup }) {
@@ -58,6 +56,9 @@ function SignupForm({ handleSignup }) {
         <Button className="btn" variant="primary" type="submit">
           Submit
         </Button>
+
+        <Nav.Link className="nav-link my-3" exact='true' href="/login">Already have an account?</Nav.Link>
+
       </Form>
     </Container>
   );

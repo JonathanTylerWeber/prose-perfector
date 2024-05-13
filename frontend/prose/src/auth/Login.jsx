@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
+import { Container, Form, Button, Nav } from "react-bootstrap"
 import "./Login.css"
 
 function LoginForm({ handleLogin }) {
@@ -30,7 +28,7 @@ function LoginForm({ handleLogin }) {
   return (
     <Container className="m-auto cntr">
       <Form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1 className="login">Login</h1>
         {error && <div className="alert alert-danger">{error}</div>}
         <Form.Group className="mb-3" controlId="username">
           <Form.Label>Username:</Form.Label>
@@ -50,6 +48,7 @@ function LoginForm({ handleLogin }) {
           Submit
         </Button>
       </Form>
+      <Nav.Link className="nav-link my-3 signup" exact='true' href="/signup">Don't have an account yet?</Nav.Link>
     </Container>
   );
 }

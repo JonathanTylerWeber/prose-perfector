@@ -20,7 +20,6 @@ function History({ currentUser }) {
 
   const handleDeletePrompt = async (promptId) => {
     try {
-      console.log(`prompt id *****${promptId}`)
       await ProseApi.deletePrompt(promptId, currentUser.username);
       // Filter out the deleted prompt from the prompts array
       setPrompts(prompts.filter(prompt => prompt.id !== promptId));
@@ -28,8 +27,6 @@ function History({ currentUser }) {
       console.error("Failed to delete prompt:", error);
     }
   };
-
-  console.log(currentUser)
 
   return (
     <div>

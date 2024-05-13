@@ -20,7 +20,6 @@ function App() {
 
   useEffect(() => {
     const fetchUserInfo = async () => {
-      console.log(`****** token${token}`)
       if (token && !currentUser) {
         try {
           let { username } = jwtDecode(token);
@@ -28,7 +27,6 @@ function App() {
           let currentUser = await ProseApi.getCurrentUser(username);
           setCurrentUser(currentUser);
           setLoading(false);
-          console.log(`use effect user: ${currentUser}`)
         } catch (error) {
           console.error("Failed to fetch user information:", error);
           setLoading(false);
@@ -73,8 +71,6 @@ function App() {
     setToken(null);
     localStorage.removeItem('token');
   };
-
-  console.log("currentUser in App:", currentUser);
 
   return (
     <div className="App">

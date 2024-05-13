@@ -6,24 +6,26 @@ function NavbarComp({ currentUser, handleLogout }) {
 
 
   return (
-    <Navbar expand="lg" className="navbar">
+
+    <Navbar expand="lg" fixed="top" className="navbar">
       <Container>
-        <Navbar.Brand className="nav-link fs-3" exact='true' href="/">Prose Perfector</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Brand className="nav-link fs-3 brand" exact='true' href="/">Prose Perfector</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggler" />
 
         {currentUser ? (
+
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="">
               <Nav.Link className="nav-link mx-3" exact='true' href="/submitForm">New Prompt</Nav.Link>
               <Nav.Link className="nav-link" href="/history" >History</Nav.Link>
               <Nav.Link className="nav-link mx-3" href={`/profile/${currentUser.username}`} >Profile</Nav.Link>
             </Nav>
-            <Nav className="ms-auto ">
+            <Nav className=" ">
               <Nav.Link exact='true' href="/" onClick={handleLogout}>
                 <button className="btn btn-success ">Log out</button>
               </Nav.Link>
-
             </Nav>
+
           </Navbar.Collapse>
 
         ) : (
@@ -33,12 +35,12 @@ function NavbarComp({ currentUser, handleLogout }) {
               <Nav.Link exact='true' href="/signup">
                 <button className="btn my-auto">Sign Up</button>
               </Nav.Link>
-
             </Nav>
           </Navbar.Collapse>
         )}
       </Container>
-    </Navbar>
+    </Navbar >
+
   );
 }
 

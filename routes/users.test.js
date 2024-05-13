@@ -5,7 +5,6 @@ const request = require("supertest");
 const app = require("../app");
 const db = require("../db");
 const User = require("../models/user");
-const Prompt = require("../models/prompt");
 const { createToken } = require("../helpers/tokens");
 
 // const {
@@ -18,7 +17,7 @@ const { createToken } = require("../helpers/tokens");
 // } = require("./_testCommon");
 
 beforeAll(async () => {
-  await db.query("DELETE FROM prompts");
+
   await db.query("DELETE FROM users");
 
   await User.register({
@@ -36,20 +35,10 @@ beforeAll(async () => {
     email: "user3@user.com",
     password: "password3",
   });
-  await Prompt.create("u1", {
-    type: "test",
-    adj: "test",
-    prompt: "test",
-    rating: "test",
-    rewrite: "test"
-  });
-  const prompts = await db.query("SELECT * FROM prompts");
-  console.log("Prompts:", prompts.rows);
   const users = await db.query("SELECT * FROM users");
   console.log("users:", users.rows);
 });
 afterAll(async () => {
-  await db.query("DELETE FROM prompts");
   await db.query("DELETE FROM users");
   await db.end();
 });
@@ -58,6 +47,20 @@ const u1Token = createToken({ username: "u1" });
 const u2Token = createToken({ username: "u2" });
 
 describe("GET /users", function () {
+  beforeAll(async () => {
+    await db.query("DELETE FROM users");
+
+    await User.register({
+      username: "u1",
+      email: "user1@user.com",
+      password: "password1",
+    });
+    await User.register({
+      username: "u2",
+      email: "user2@user.com",
+      password: "password2",
+    });
+  });
   test("works", async function () {
     const resp = await request(app).get("/users").send({ _token: u1Token });
     expect(resp.body).toEqual({
@@ -69,10 +72,6 @@ describe("GET /users", function () {
         {
           username: "u2",
           email: "user2@user.com",
-        },
-        {
-          username: "u3",
-          email: "user3@user.com",
         },
       ],
     });

@@ -1,4 +1,187 @@
 h1,
+h2,
+h4,
+span,
 p {
   color: white;
+}
+
+.pen {
+  color: white;
+  font-size: 1em;
+  /* Increase the font size to make the icon larger */
+}
+
+.pen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  margin-left: 2em;
+}
+
+.pen-container::before {
+  content: '';
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  background-color: #5bc19d;
+  z-index: -1;
+  border-radius: 40px;
+}
+
+.create-prompt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.img-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-col>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 262px;
+  height: 262px;
+  background-color: #5bc19d;
+  border-radius: 40px;
+  position: relative;
+}
+
+.fa-wand-magic-sparkles,
+.fa-autoprefixer,
+.fa-comment-dots,
+.fa-face-smile-wink {
+  height: 200px;
+  width: 200px;
+  color: white;
+}
+
+.wand,
+.prefix,
+.comment,
+.smile {
+  position: relative;
+}
+
+.wand::before,
+.comment::before,
+.smile::before,
+.prefix::before {
+  content: '';
+  position: absolute;
+  width: 262px;
+  height: 262px;
+  background-color: #5bc19d;
+  z-index: -1;
+  border-radius: 40px;
+}
+
+
+.title {
+  font-size: 5em;
+  font-weight: bold;
+}
+
+p,
+span {
+  font-size: 1.5em;
+}
+
+.head-p {
+  font-size: 2em;
+}
+
+.head-p2 {
+  font-size: 2em;
+  margin-top: 2em;
+}
+
+.head-p3 {
+  font-size: 4em;
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+}
+
+h2 {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.head {
+  margin-top: 10em;
+  margin-bottom: 5em;
+  text-align: center;
+}
+
+.text {
+  margin-top: 10em;
+  margin-bottom: 10em;
+}
+
+.foot {
+  margin-top: 10em;
+  margin-bottom: 15em;
+  text-align: center;
+}
+
+.img-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-section>div {
+  margin-top: 10em;
+  margin-bottom: 10em;
+}
+
+.nav-link.sign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign {
+  margin-top: 3em;
+}
+
+.btn {
+  background: #5bc19d;
+  border: none;
+  border-radius: 20px;
+}
+
+.signup-btn {
+  font-size: 2em;
+  border-radius: 40px;
+  width: 6em;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: white;
+  color: black;
+}
+
+button.navbar-toggler.collapsed {
+  background: white;
+  border: none;
+}
+
+button.navbar-toggler {
+  background: white;
+  border: none;
+}
+
+button.navbar-toggler:hover {
+  background: #5bc19d;
 }

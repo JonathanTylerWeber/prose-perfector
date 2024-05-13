@@ -1,7 +1,11 @@
-h1,
+.login {
+  margin-top: 3em;
+  font-size: 3em;
+  font-weight: bold;
+}
+
 label {
-  color: white;
-  margin-top: 1em;
+  font-size: 1.5em;
 }
 
 .btn {
