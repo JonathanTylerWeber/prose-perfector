@@ -1,3 +1,8 @@
+.form-h1 {
+  font-size: 3em;
+  font-weight: bold;
+}
+
 pre {
   color: white;
 }
@@ -8,4 +13,17 @@ p {
 
 .form {
   margin-top: 10em;
+}
+
+.form-cntr {
+  width: 60em;
+}
+
+.form-btn {
+  margin-top: 2em;
+}
+
+.response {
+  margin-top: 5em;
+  margin-bottom: 10em;
 }

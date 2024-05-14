@@ -8,6 +8,14 @@ const {
 /** Related functions for prompts. */
 
 class Prompt {
+
+  static async findAll() {
+    const result = await db.query(
+      `SELECT * FROM "prompts"`
+    )
+    return result.rows;
+  }
+
   /** Save prompt with data.
    *
    * Returns { id, username, prompt, rating }

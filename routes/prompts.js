@@ -9,6 +9,16 @@ const promptCreateSchema = require("../schemas/promptCreate.json");
 
 const router = express.Router();
 
+
+router.get("/", async function (req, res, next) {
+  try {
+    const prompts = await Prompt.findAll();
+    return res.json({ prompts });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 /** POST / => { prompt } 
  * 
  * Create a new prompt associated with the authenticated user.
@@ -41,6 +51,8 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
  */
 router.delete("/:username/:id", ensureCorrectUser, async function (req, res, next) {
   try {
+    console.log("Username:", req.params.username);
+    console.log("Prompt ID:", req.params.id);
     await Prompt.delete(req.params.id);
     return res.json({ deleted: req.params.id });
   } catch (err) {
