@@ -3,12 +3,11 @@
   font-weight: bold;
 }
 
-pre {
+pre,
+p,
+h3 {
   color: white;
-}
-
-p {
-  color: white;
+  font-family: 'Arial', sans-serif;
 }
 
 .form {
@@ -21,9 +20,106 @@ p {
 
 .form-btn {
   margin-top: 2em;
+  margin-bottom: 5em;
+  background-color: #5bc19d;
+  color: white;
+  border: none;
+  padding: 0.375rem 0.75rem;
+  font-size: 1em;
+  line-height: 1.5;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.form-btn:focus,
+.form-btn:active {
+  background-color: #5bc19d;
+  color: white;
+  border: none;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+}
+
+.spin-text {
+  font-size: 1em;
+  margin-left: .5em;
+}
+
+.spinner {
+  color: white;
 }
 
 .response {
   margin-top: 5em;
   margin-bottom: 10em;
+}
+
+.form-control {
+  color: white;
+  background-color: #214050;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+  /* Ensure padding and border are included in element's total width and height */
+  padding: 0.375rem 0.75rem;
+}
+
+.form-control::placeholder {
+  color: #d0d0d0;
+}
+
+.form-control:focus {
+  color: white;
+  background-color: #214050;
+  border: solid 1px white;
+  /* Border should be the outermost part */
+  font-size: 1.2em;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff;
+  box-shadow: inset 0 0 20px 20px #214050;
+}
+
+.res-box {
+  background-color: #214050;
+  padding: 6px 12px;
+  font-size: 1.2em;
+  font-family: 'Arial', sans-serif;
+  border-radius: 10px;
+  width: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+.label {
+  font-size: 2em;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  margin-top: 1em;
+}
+
+.review {
+  margin-bottom: .5em;
+  font-family: 'Arial', sans-serif;
 }

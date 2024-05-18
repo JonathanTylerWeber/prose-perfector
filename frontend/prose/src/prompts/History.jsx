@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ProseApi from '../API/api';
+import "./History.css"
+import { Container } from "react-bootstrap"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 function History({ currentUser }) {
   const [prompts, setPrompts] = useState([]);
@@ -29,22 +33,31 @@ function History({ currentUser }) {
   };
 
   return (
-    <div>
+    <Container className="history-container">
+      <h1 className="history-h1">Prompt History:</h1>
       {prompts && prompts.length > 0 ? (
         prompts.map(prompt => (
-          <div key={prompt.id}>
-            <p><strong>Type:</strong> {prompt.type}</p>
-            <p><strong>Prompt:</strong> {prompt.prompt}</p>
-            <p><strong>Rating:</strong> {prompt.rating}</p>
-            <p><strong>Adjective:</strong> {prompt.adj}</p>
-            <p><strong>Rewrite:</strong> {prompt.rewrite}</p>
-            <button onClick={() => handleDeletePrompt(prompt.id)}>Delete</button>
+          <div key={prompt.id} className="prompt">
+            <h3 className="h-title">Type:</h3>
+            <p className="h-text">{prompt.type}</p>
+            <h3 className="h-title">Adjective:</h3>
+            <p className="h-text">{prompt.adj}</p>
+            <h3 className="h-title">Prompt:</h3>
+            <pre className="h-text">{prompt.prompt}</pre>
+            <h3 className="h-title">Rating:</h3>
+            <p className="h-text">{prompt.rating}</p>
+            <h3 className="h-title">Rewrite:</h3>
+            <pre className="h-text">{prompt.rewrite}</pre>
+            <button variant="primary" className="btn"
+              onClick={() => handleDeletePrompt(prompt.id)}>
+              <FontAwesomeIcon className="trash" icon={faTrashCan} />
+            </button>
           </div>
         ))
       ) : (
         <p>No prompts available</p>
       )}
-    </div>
+    </Container>
   );
 }
 

@@ -1,0 +1,35 @@
+.history-h1 {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.history-container {
+  margin-top: 10em;
+}
+
+.h-text {
+  font-size: 1.2em;
+  width: 100%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  margin-bottom: 2em;
+}
+
+.h-title {
+  font-weight: bold;
+}
+
+.prompt {
+  background-color: #214050;
+  padding: 6px 12px;
+  border-radius: 10px;
+  margin-top: 2em;
+  margin-bottom: 5em;
+  padding: 2em 2em;
+}
+
+.trash {
+  font-size: 1em;
+  border-radius: 5px;
+}

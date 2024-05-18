@@ -6,18 +6,12 @@ p {
   color: white;
 }
 
-.create-prompt {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3em;
-}
-
 .head-p3 {
   font-size: 3em;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 1.5em;
 }
 
 .pen-container {
@@ -27,7 +21,8 @@ p {
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-left: 2em;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .pen {
@@ -43,6 +38,14 @@ p {
   background-color: #5bc19d;
   z-index: -1;
   border-radius: 20px;
+}
+
+.pen-container:hover .pen {
+  color: black;
+}
+
+.pen-container:hover::before {
+  background-color: white;
 }
 
 
@@ -109,7 +112,7 @@ span {
 
 .head-p2 {
   font-size: 2em;
-  margin-top: 2em;
+  margin-top: 1em;
 }
 
 

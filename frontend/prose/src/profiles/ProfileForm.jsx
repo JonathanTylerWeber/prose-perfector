@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import ProseApi from '../API/api';
+import "./ProfileForm.css"
+import { Container, Form, Button } from "react-bootstrap"
 
 function ProfileForm() {
   const [user, setUser] = useState(null);
@@ -61,30 +63,32 @@ function ProfileForm() {
   console.log
 
   return (
-    <div>
-      <h1>Edit {username}'s Profile</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
+    <Container className="cntr">
+      <h1 className="profile-h1">Edit {username}'s Profile</h1>
+      <Form onSubmit={handleSubmit} >
+        <Form.Group className="mb-3" controlId="email">
+          <Form.Label className='label'>Update Email:</Form.Label>
+          <Form.Control
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-          />
-        </label>
-        <label>
-          New Password:
-          <input
+            required />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label className='label'>New Password:</Form.Label>
+          <Form.Control
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Save Changes</button>
-      </form>
-    </div>
+            required />
+        </Form.Group>
+        <Button className="btn auth-btn" variant="primary" type="submit">
+          Save Changes
+        </Button>
+      </Form>
+    </Container>
   );
 }
 

@@ -55,17 +55,14 @@ function Home({ currentUser }) {
             <div className="head">
               <h1 className="title">Perfect your prose</h1>
               <p className='head-p2'>Welcome back, {currentUser.username}!</p>
-              <div className="create-prompt">
-                <p className="head-p3">
-                  Create new prompt:
-                </p>
-                <Nav.Link className="nav-link " exact='true' href="/submitForm">
-                  <div className="pen-container">
-                    <FontAwesomeIcon className="pen" icon={faPenToSquare} />
-                  </div>
-                </Nav.Link>
-              </div>
-
+              <p className="head-p3">
+                Create new prompt:
+              </p>
+              <Nav.Link className="nav-link" exact='true' href="/submitForm">
+                <div className="pen-container">
+                  <FontAwesomeIcon className="pen" icon={faPenToSquare} />
+                </div>
+              </Nav.Link>
             </div>
           </Container>
         </>

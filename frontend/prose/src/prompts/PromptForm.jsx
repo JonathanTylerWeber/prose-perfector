@@ -34,30 +34,30 @@ function PromptForm() {
       <Form onSubmit={handleSubmit} className='form'>
         <h1 className="form-h1">Enter writing and info to get rating, tips, and a rewrite</h1>
         <Form.Group className="mb-3" controlId="type">
-          <Form.Label>Type:</Form.Label>
+          <Form.Label className='label'>Type:</Form.Label>
           <Form.Control type="text" value={type}
             onChange={(e) => setType(e.target.value)}
             required placeholder="e.g. 'thank you letter', 'product description', etc" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="adj">
-          <Form.Label>Adjective:</Form.Label>
+          <Form.Label className='label'>Adjective:</Form.Label>
           <Form.Control type="text" value={adj}
             onChange={(e) => setAdj(e.target.value)}
             required placeholder="e.g. 'sincere', 'inspirational', etc" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="prompt">
-          <Form.Label>Prompt:</Form.Label>
+          <Form.Label className='label'>Prompt:</Form.Label>
           <Form.Control as="textarea" value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             required placeholder="Enter your writing to get feedback"
             rows={6} />
         </Form.Group>
-        <Button className="btn form-btn" variant="primary" type="submit">
+        <Button className="btn form-btn" variant="primary" type="submit" disabled={isLoading}>
           {isLoading ? (
-            <>
-              <Spinner animation="border" size="sm" />
-              <span className="ms-2" style={{ color: 'black' }} >Submitting...</span>
-            </>
+            <div className="spinner-container">
+              <Spinner animation="border" className='spinner' size="sm" />
+              <span className="spin-text"> Submitting...</span>
+            </div>
           ) : (
             "Submit"
           )}
@@ -65,11 +65,12 @@ function PromptForm() {
       </Form>
       {ratingResult &&
         <div className='response'>
-          <h2>Rating:</h2>
-          <p>{ratingResult}</p>
+          <h2 className='review'>Review:</h2>
+          <h3 className='label'>Rating:</h3>
+          <p className='res-box'>{ratingResult}</p>
           <br />
-          <h2>Rewritten {type}:</h2>
-          <p>{rewriteResult}</p>
+          <h3 className='label'>Rewritten {type}:</h3>
+          <pre className='res-box'>{rewriteResult}</pre>
         </div>
       }
     </Container>
