@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap"
 import './Navbar.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSquarePen } from "@fortawesome/free-solid-svg-icons";
 
 function NavbarComp({ currentUser, handleLogout }) {
 
@@ -9,7 +11,16 @@ function NavbarComp({ currentUser, handleLogout }) {
 
     <Navbar expand="lg" fixed="top" className="navbar">
       <Container>
-        <Navbar.Brand className="nav-link fs-3 brand" exact='true' href="/">Prose Perfector</Navbar.Brand>
+        <Navbar.Brand className="nav-link " exact='true' href="/">
+          <span className="brand">
+            <div className="square-container">
+              <FontAwesomeIcon className="logo" icon={faSquarePen} />
+            </div>
+            <div className="brand-text">
+              Prose Perfector
+            </div>
+          </span>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggler" />
 
         {currentUser ? (
