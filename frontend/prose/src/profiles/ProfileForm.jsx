@@ -82,7 +82,7 @@ function ProfileForm() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            required />
+          />
         </Form.Group>
         <Button className="btn auth-btn" variant="primary" type="submit">
           Save Changes

@@ -51,8 +51,8 @@ class ProseApi {
   static async savePrompt(rating, prompt, rewrite, type, adj) {
     try {
       const res = await this.request('prompt', { rating, prompt, rewrite, type, adj }, 'post');
-      console.log(res.data);
-      return res.data;
+      console.log(res);
+      return res;
     } catch (error) {
       console.error('Error saving data:', error);
       throw error;
