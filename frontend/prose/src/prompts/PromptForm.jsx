@@ -22,6 +22,7 @@ function PromptForm() {
       setRatingResult(ratingResponse);
       setRewriteResult(rewriteResponse);
       await ProseApi.savePrompt(ratingResponse, prompt, rewriteResponse, type, adj)
+      console.log('Prompt saved successfully');
     } catch (error) {
       console.error("Failed to submit prompt form:", error);
     } finally {

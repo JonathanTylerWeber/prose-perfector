@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`History > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="history-container container"
+  >
+    <h1
+      class="history-h1"
+    >
+      Prompt History:
+    </h1>
+    <p>
+      No prompts available
+    </p>
+  </div>
+</DocumentFragment>
+`;

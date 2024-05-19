@@ -1,0 +1,78 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PromptForm > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="m-auto form-cntr  container"
+  >
+    <form
+      class="form"
+    >
+      <h1
+        class="form-h1"
+      >
+        Enter writing and info to get rating, tips, and a rewrite
+      </h1>
+      <div
+        class="mb-3"
+      >
+        <label
+          class="label form-label"
+          for="type"
+        >
+          Type:
+        </label>
+        <input
+          class="form-control"
+          id="type"
+          placeholder="e.g. 'thank you letter', 'product description', etc"
+          required=""
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="mb-3"
+      >
+        <label
+          class="label form-label"
+          for="adj"
+        >
+          Adjective:
+        </label>
+        <input
+          class="form-control"
+          id="adj"
+          placeholder="e.g. 'sincere', 'inspirational', etc"
+          required=""
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="mb-3"
+      >
+        <label
+          class="label form-label"
+          for="prompt"
+        >
+          Prompt:
+        </label>
+        <textarea
+          class="form-control"
+          id="prompt"
+          placeholder="Enter your writing to get feedback"
+          required=""
+          rows="6"
+        />
+      </div>
+      <button
+        class="btn form-btn btn btn-primary"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
