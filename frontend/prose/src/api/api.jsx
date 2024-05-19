@@ -14,6 +14,7 @@ const BASE_URL = "http://localhost:3001";
 class ProseApi {
   // the token for interacting with the API will be stored here.
   static token;
+  static BASE_URL = BASE_URL;
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
