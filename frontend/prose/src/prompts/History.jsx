@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ProseApi from '../API/api';
+import ProseApi from '../auth/api';
 import "./History.css"
 import { Container } from "react-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

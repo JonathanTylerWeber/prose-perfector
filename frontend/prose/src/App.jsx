@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavbarComp from "./routes-nav/Navbar"
 import { jwtDecode } from "jwt-decode";
 import Home from "./homepage/Home";
-import ProseApi from "./API/api";
+import ProseApi from "./auth/api";
 import LoginForm from "./auth/Login";
 import SignupForm from "./auth/Signup";
 import PromptForm from "./prompts/PromptForm"

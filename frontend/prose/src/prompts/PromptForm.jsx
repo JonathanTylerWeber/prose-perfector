@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ProseApi from '../API/api';
+import ProseApi from '../auth/api';
 import { Container, Form, Button, Spinner } from "react-bootstrap"
 import "./PromptForm.css"
 
