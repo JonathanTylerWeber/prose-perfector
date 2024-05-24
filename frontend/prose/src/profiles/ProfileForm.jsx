@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import ProseApi from '../auth/api';
+import ProseApi from '../API/api';
 import "./ProfileForm.css"
 import { Container, Form, Button } from "react-bootstrap"
 
