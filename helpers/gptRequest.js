@@ -2,24 +2,34 @@ const axios = require('axios');
 const { HttpsProxyAgent } = require('https-proxy-agent');
 require('dotenv').config();
 
-// Function to make a request using a proxy
-async function getRating(type, adj, prompt) {
-  console.log('*******gptRequest')
-  try {
+// Function to create an Axios instance with or without a proxy
+function createAxiosInstance() {
+  if (process.env.USE_PROXY === 'true') {
     // Define your proxy address and port
-    const proxyAddress = 'http://127.0.0.1';
-    const proxyPort = 7890;
+    const proxyAddress = process.env.PROXY_ADDRESS || 'http://127.0.0.1';
+    const proxyPort = process.env.PROXY_PORT || 7890;
 
     // Create the proxy agent
     const proxyAgent = new HttpsProxyAgent(`${proxyAddress}:${proxyPort}`);
 
     // Create an instance of Axios with the proxy configuration
-    const instance = axios.create({
+    return axios.create({
       httpsAgent: proxyAgent, // Use the proxy agent for HTTPS requests
       httpAgent: proxyAgent, // Use the proxy agent for HTTP requests (optional, but recommended)
     });
+  } else {
+    // Create an instance of Axios without the proxy
+    return axios.create();
+  }
+}
 
-    const basePrompt = `You will be provided with a ${type} and must rate it from 1-10 on grammar and how ${adj} it is: ${prompt}`
+// Function to make a request using Axios
+async function getRating(type, adj, prompt) {
+  console.log('*******gptRequest');
+  try {
+    const instance = createAxiosInstance();
+
+    const basePrompt = `You will be provided with a ${type} and must rate it from 1-10 on grammar and how ${adj} it is: ${prompt}`;
 
     // Request data
     const data = JSON.stringify({
@@ -57,22 +67,11 @@ async function getRating(type, adj, prompt) {
 }
 
 async function rewritePrompt(type, adj, prompt) {
-  console.log('*******gptRequest')
+  console.log('*******gptRequest');
   try {
-    // Define your proxy address and port
-    const proxyAddress = 'http://127.0.0.1';
-    const proxyPort = 7890;
+    const instance = createAxiosInstance();
 
-    // Create the proxy agent
-    const proxyAgent = new HttpsProxyAgent(`${proxyAddress}:${proxyPort}`);
-
-    // Create an instance of Axios with the proxy configuration
-    const instance = axios.create({
-      httpsAgent: proxyAgent, // Use the proxy agent for HTTPS requests
-      httpAgent: proxyAgent, // Use the proxy agent for HTTP requests (optional, but recommended)
-    });
-
-    const basePrompt = `You will be provided with a ${type} and must rewrite it to fix grammar and make it more ${adj}: ${prompt}`
+    const basePrompt = `You will be provided with a ${type} and must rewrite it to fix grammar and make it more ${adj}: ${prompt}`;
 
     // Request data
     const data = JSON.stringify({
