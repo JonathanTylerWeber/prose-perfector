@@ -28,7 +28,7 @@ function NavbarComp({ currentUser, handleLogout }) {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="">
               <Nav.Link className="nav-link mx-3" exact='true' href="/submitForm">New Prompt</Nav.Link>
-              <Nav.Link className="nav-link" href="/history" >History</Nav.Link>
+              <Nav.Link className="nav-link mx-3" href="/history" >History</Nav.Link>
               <Nav.Link className="nav-link mx-3" href={`/profile/${currentUser.username}`} >Profile</Nav.Link>
             </Nav>
             <Nav className=" ms-auto">

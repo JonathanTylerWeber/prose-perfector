@@ -80,6 +80,7 @@ function ProfileForm() {
           <Form.Control
             type="password"
             name="password"
+            placeholder="Enter new password"
             value={formData.password}
             onChange={handleChange}
           />

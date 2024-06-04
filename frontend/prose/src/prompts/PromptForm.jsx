@@ -31,7 +31,7 @@ function PromptForm() {
   };
 
   return (
-    <Container className="m-auto form-cntr ">
+    <Container className="m-auto form-cntr">
       <Form onSubmit={handleSubmit} className='form'>
         <h1 className="form-h1">Enter writing and info to get rating, tips, and a rewrite</h1>
         <Form.Group className="mb-3" controlId="type">

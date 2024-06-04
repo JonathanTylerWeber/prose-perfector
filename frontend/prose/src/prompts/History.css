@@ -7,6 +7,12 @@
   margin-top: 10em;
 }
 
+@media (max-width: 768px) {
+  .history-container {
+    margin-top: 5em;
+  }
+}
+
 .h-text {
   font-size: 1.2em;
   width: 100%;
