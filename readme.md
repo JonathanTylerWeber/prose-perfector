@@ -27,7 +27,7 @@ These features were chosen to provide a comprehensive and user-friendly experien
 - **HTTP Requests**: axios
 
 ### Tests
-The tests are located in the `tests` directory for both frontend and backend components. To run the tests, use the following commands:
+To run the tests, use the following commands (Backend in main directory, Frontend in frontend directory):
 
 - **Tests**: 
   ```sh
