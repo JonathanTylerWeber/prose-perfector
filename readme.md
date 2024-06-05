@@ -44,8 +44,6 @@ To run the tests, use the following commands (Backend in main directory, Fronten
 
 ### API Documentation
 
-#### OpenAI API
-
 - **Rating and Feedback Endpoint**:
     ```sh
     POST /submit/rating
@@ -53,17 +51,15 @@ To run the tests, use the following commands (Backend in main directory, Fronten
     - **Request**: 
       ```json
       { 
-        "type": "essay", 
-        "adj": "persuasive", 
+        "type": "thank you letter", 
+        "adj": "sincere", 
         "prompt": "Your text here" 
       }
       ```
     - **Response**: 
       ```json
       { 
-        "rating": 8, 
-        "feedback": "Your writing is persuasive but could use more evidence.", 
-        "rewritten": "Your improved text here" 
+        "result": "rating and feedback here"
       }
       ```
 
@@ -74,8 +70,8 @@ To run the tests, use the following commands (Backend in main directory, Fronten
     - **Request**: 
       ```json
       { 
-        "type": "story", 
-        "adj": "entertaining", 
+        "type": "thank you letter", 
+        "adj": "sincere",  
         "prompt": "Your text here" 
       }
       ```
