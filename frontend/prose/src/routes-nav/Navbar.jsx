@@ -10,7 +10,7 @@ function NavbarComp({ currentUser, handleLogout }) {
   return (
 
     <Navbar expand="lg" fixed="top" className="navbar">
-      <Container>
+      <Container className="container-xl">
         <Navbar.Brand className="nav-link " exact='true' href="/">
           <span className="brand">
             <div className="square-container">
@@ -27,7 +27,7 @@ function NavbarComp({ currentUser, handleLogout }) {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="">
-              <Nav.Link className="nav-link mx-3" exact='true' href="/submitForm">New Prompt</Nav.Link>
+              <Nav.Link className="nav-link mx-3" exact='true' href="/submitForm">New Writing</Nav.Link>
               <Nav.Link className="nav-link mx-3" href="/history" >History</Nav.Link>
               <Nav.Link className="nav-link mx-3" href={`/profile/${currentUser.username}`} >Profile</Nav.Link>
             </Nav>

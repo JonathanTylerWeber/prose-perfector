@@ -5,7 +5,7 @@ require('dotenv').config();
 // Function to create an Axios instance with or without a proxy
 function createAxiosInstance() {
   if (process.env.USE_PROXY === 'true') {
-    // Define your proxy address and port
+    // Define proxy address and port
     const proxyAddress = process.env.PROXY_ADDRESS || 'http://127.0.0.1';
     const proxyPort = process.env.PROXY_PORT || 7890;
 
@@ -15,7 +15,7 @@ function createAxiosInstance() {
     // Create an instance of Axios with the proxy configuration
     return axios.create({
       httpsAgent: proxyAgent, // Use the proxy agent for HTTPS requests
-      httpAgent: proxyAgent, // Use the proxy agent for HTTP requests (optional, but recommended)
+      httpAgent: proxyAgent, // Use the proxy agent for HTTP requests 
     });
   } else {
     // Create an instance of Axios without the proxy

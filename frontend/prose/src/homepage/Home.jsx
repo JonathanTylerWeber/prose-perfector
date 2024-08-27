@@ -56,7 +56,7 @@ function Home({ currentUser }) {
               <h1 className="title">Perfect your prose</h1>
               <p className='head-p2'>Welcome back, {currentUser.username}!</p>
               <p className="head-p3">
-                Create new prompt:
+                Edit new writing:
               </p>
               <Nav.Link className="nav-link" exact='true' href="/submitForm">
                 <div className="pen-container">

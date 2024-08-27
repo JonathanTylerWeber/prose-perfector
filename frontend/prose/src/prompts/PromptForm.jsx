@@ -47,7 +47,7 @@ function PromptForm() {
             required placeholder="e.g. 'sincere', 'inspirational', etc" />
         </Form.Group>
         <Form.Group className="mb-3" controlId="prompt">
-          <Form.Label className='label'>Prompt:</Form.Label>
+          <Form.Label className='label'>Writing:</Form.Label>
           <Form.Control as="textarea" value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             required placeholder="Enter your writing to get feedback"

@@ -42,7 +42,7 @@ function History({ currentUser }) {
             <p className="h-text">{prompt.type}</p>
             <h3 className="h-title">Adjective:</h3>
             <p className="h-text">{prompt.adj}</p>
-            <h3 className="h-title">Prompt:</h3>
+            <h3 className="h-title">Writing:</h3>
             <pre className="h-text">{prompt.prompt}</pre>
             <h3 className="h-title">Rating:</h3>
             <p className="h-text">{prompt.rating}</p>
