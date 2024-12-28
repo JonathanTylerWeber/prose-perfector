@@ -19,6 +19,7 @@
     "jsonschema": "^1.4.1",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "nodemon": "^3.1.9",
     "openai": "^4.38.5",
     "pg": "^8.11.5"
   },
