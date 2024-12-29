@@ -24,7 +24,52 @@ services:
     volumes:
       - ./:/app
       - /app/node_modules
+    env_file:
+      - .env # Explicitly specify the .env file
+    environment:
+      # Application-specific environment variables
+      SECRET_KEY: ${SECRET_KEY:-secret-dev}
+      PORT: ${PORT:-3001}
+      NODE_ENV: ${NODE_ENV:-development}
+
+      # Database configuration
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-password}
+      DB_HOST: postgres
+      DB_PORT: ${DB_PORT:-5432}
+      DB_NAME: ${DB_NAME:-prose}
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:14 # Specify the PostgreSQL version
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+      POSTGRES_DB: ${DB_NAME:-prose}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./prose-schema.sql:/docker-entrypoint-initdb.d/prose-schema.sql
+    networks:
+      - app-network
+    healthcheck:
+      test: [
+          "CMD-SHELL",
+          "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-prose} && \
+          psql -U ${DB_USER:-postgres} -d ${DB_NAME:-prose} -tc \"SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'users') AND EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'prompts');\" | grep -q 't'",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  postgres-data:
