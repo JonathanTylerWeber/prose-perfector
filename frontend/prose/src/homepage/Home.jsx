@@ -35,8 +35,24 @@ function Home({ currentUser }) {
     }
   };
 
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch(
+        "https://zpzi6qazm5.us-west-2.awsapprunner.com/health/users"
+      );
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      const data = await res.json();
+      console.log(data); // or handle the data as needed
+    } catch (error) {
+      console.log("Error fetching health:", error);
+    }
+  };
+
   useEffect(() => {
-    fetchHealth(); // Call the async function
+    fetchHealth();
+    fetchUsers(); // Call the async function
   }, []); // Empty dependency array to run once on mount
 
   useEffect(() => {
