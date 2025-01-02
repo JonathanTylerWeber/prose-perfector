@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL || "http://localhost:3001";
+// const BASE_URL = "https://zpzi6qazm5.us-west-2.awsapprunner.com";
 
 /** API Class.
  *
@@ -17,10 +18,10 @@ class ProseApi {
     console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
-    const headers = ProseApi.token ? { Authorization: `Bearer ${ProseApi.token}` } : {};
-    const params = (method === "get")
-      ? data
+    const headers = ProseApi.token
+      ? { Authorization: `Bearer ${ProseApi.token}` }
       : {};
+    const params = method === "get" ? data : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -38,47 +39,59 @@ class ProseApi {
       const res = await this.request(`users/${username}/prompts`);
       return res;
     } catch (error) {
-      console.error('Error getting user prompts:', error);
+      console.error("Error getting user prompts:", error);
       throw error;
     }
   }
 
   static async savePrompt(rating, prompt, rewrite, type, adj) {
     try {
-      const res = await this.request('prompt', { rating, prompt, rewrite, type, adj }, 'post');
+      const res = await this.request(
+        "prompt",
+        { rating, prompt, rewrite, type, adj },
+        "post"
+      );
       console.log(res);
       return res;
     } catch (error) {
-      console.error('Error saving data:', error);
+      console.error("Error saving data:", error);
       throw error;
     }
   }
 
   static async deletePrompt(promptId, username) {
     try {
-      return await this.request(`prompt/${username}/${promptId}`, {}, 'delete');
+      return await this.request(`prompt/${username}/${promptId}`, {}, "delete");
     } catch (error) {
-      console.error('Error deleting prompt:', error);
+      console.error("Error deleting prompt:", error);
       throw error;
     }
   }
 
   static async getRating(type, adj, prompt) {
     try {
-      let res = await this.request('submit/rating', { type, adj, prompt }, 'post');
+      let res = await this.request(
+        "submit/rating",
+        { type, adj, prompt },
+        "post"
+      );
       return res.choices[0].message.content;
     } catch (error) {
-      console.error('Error getting rating:', error);
+      console.error("Error getting rating:", error);
       throw error;
     }
   }
 
   static async rewritePrompt(type, adj, prompt) {
     try {
-      let res = await this.request('submit/rewrite', { type, adj, prompt }, 'post');
+      let res = await this.request(
+        "submit/rewrite",
+        { type, adj, prompt },
+        "post"
+      );
       return res.choices[0].message.content;
     } catch (error) {
-      console.error('Error getting rewrite:', error);
+      console.error("Error getting rewrite:", error);
       throw error;
     }
   }
@@ -108,16 +121,16 @@ class ProseApi {
 
   static async login(username, password) {
     try {
-      let res = await this.request("auth/token", { username, password }, "post");
+      let res = await this.request(
+        "auth/token",
+        { username, password },
+        "post"
+      );
       return res.token;
     } catch (error) {
       throw error;
     }
   }
-
-
 }
-
-
 
 export default ProseApi;
