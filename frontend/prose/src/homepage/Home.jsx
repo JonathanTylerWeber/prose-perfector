@@ -22,7 +22,9 @@ function Home({ currentUser }) {
 
   const fetchHealth = async () => {
     try {
-      const res = await fetch("http://localhost:3001/health");
+      const res = await fetch(
+        "https://zpzi6qazm5.us-west-2.awsapprunner.com/health"
+      );
       if (!res.ok) {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
