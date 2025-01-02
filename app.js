@@ -16,8 +16,12 @@ const morgan = require("morgan");
 
 const app = express();
 
+// CORS options
 const corsOptions = {
-  origin: "https://main.dgbs5jq18o1vy.amplifyapp.com",
+  origin: "https://main.dgbs5jq18o1vy.amplifyapp.com", // Allow only this origin
+  methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+  credentials: true, // Allow credentials (cookies, etc.)
 };
 
 app.use(cors(corsOptions));
