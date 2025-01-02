@@ -16,7 +16,11 @@ const morgan = require("morgan");
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://main.dgbs5jq18o1vy.amplifyapp.com",
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(authenticateJWT);
