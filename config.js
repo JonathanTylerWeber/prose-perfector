@@ -32,7 +32,7 @@ function getDatabaseUri() {
   // Construct the database URI
   return `postgresql://${dbUser}:${encodeURIComponent(
     dbPassword
-  )}@${dbHost}:${dbPort}/${dbName}`;
+  )}@${dbHost}:${dbPort}/${dbName}?sslmode=require`;
 }
 
 const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 13;
